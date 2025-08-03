@@ -4,18 +4,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wallpaper/Pages/HomePage.dart';
-import 'package:wallpaper/Pages/LoginPage.dart';
+import 'package:wallpaper/Pages/RegistrationPage.dart';
 import 'package:wallpaper/Pages/WelcomePage.dart';
 import 'package:wallpaper/services/auth_service.dart';
 
-class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({super.key});
+class Loginpage extends StatefulWidget {
+  const Loginpage({super.key});
 
   @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
+  State<Loginpage> createState() => _LoginPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> with TickerProviderStateMixin{
+class _LoginPageState extends State<Loginpage> with TickerProviderStateMixin{
 
   TextEditingController MailController = TextEditingController();
   TextEditingController PasswordController = TextEditingController();
@@ -62,12 +62,11 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
                     SizedBox(
                       width: width,
                       height: height*0.4,
-                      child: Lottie.asset("assets/lottie/signup.json")),
-                    Text("Sign Up" , style: TextStyle(
+                      child: Lottie.asset("assets/lottie/login.json")),
+                    Text("Login" , style: TextStyle(
                       fontSize: width*0.1, 
                       color: Colors.black, 
                       fontWeight: FontWeight.bold, 
-                      letterSpacing: 4, 
                     )),
                     SizedBox(height: 10.0,),
                     TextFormField(
@@ -107,41 +106,22 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
                       width: width,
                       child: ElevatedButton(onPressed: (){
                         register();
-                      }, child: Text("Register", style: TextStyle(fontSize: width*0.06, color: Colors.white, fontWeight: FontWeight.bold),), 
+                      }, child: Text("Login", style: TextStyle(fontSize: width*0.06, color: Colors.white, fontWeight: FontWeight.bold),), 
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),),
                     ),
                     SizedBox(height: 10.0,),
-                    Text.rich(TextSpan(text: "Already registered ?  ", 
+                    Text.rich(TextSpan(text: "You don't have an account ?  ", 
                       style: TextStyle(color: Colors.black, fontSize: width*0.04),
                       children: [
                         TextSpan(
                           text: "Click here",
                           style: TextStyle(color: Colors.blue, fontSize: width*0.04),
                           recognizer: TapGestureRecognizer() ..onTap = (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Loginpage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> RegistrationPage()));
                           }
                         ),
                       ])),
-                    SizedBox(height: height*0.05,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        OutlinedButton(onPressed: (){
-                        
-                        }, child: Row(children: [
-                          Image.asset("assets/images/google.png", width: width*0.075,),
-                          SizedBox(width: 10.0,),
-                          Text("Google", style: TextStyle(fontSize: width*0.05, color: Colors.black),)
-                        ],)),
-                        OutlinedButton(onPressed: (){
-                        
-                        }, child: Row(children: [
-                          Image.asset("assets/images/facebook.png", width: width*0.075,),
-                          SizedBox(width: 10.0,),
-                          Text("Facebook", style: TextStyle(fontSize: width*0.05, color: Colors.black),)
-                        ],)),
-                      ],
-                    )
+                    
           
                   ],
                 ),

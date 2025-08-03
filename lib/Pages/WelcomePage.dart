@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wallpaper/Pages/LoginPage.dart';
 import 'package:wallpaper/Pages/RegistrationPage.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   width: width*0.45,
                   height: height*0.05,
                   child: FilledButton(onPressed: (){
-                  
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Loginpage()));
                   }, child: Text("Login", style: TextStyle(color: Colors.white, fontSize: width*0.05),), 
                   style: FilledButton.styleFrom(
                     backgroundColor: Colors.deepPurple
