@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallpaper/Pages/RegistrationPage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:wallpaper/Pages/WelcomePage.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:  RegistrationPage()
+      home:  WelcomePage()
     );
   }
 }

@@ -11,14 +11,27 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("HomePage", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.amber,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        alignment: Alignment.centerLeft, // Text’i ortalamak için
         children: [
-          Text("Home")
+          Image.asset(
+            'assets/images/vector2.png', // Örnek resim
+            width: 400,
+            height: 300,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            color: Colors.black54, // Yazının okunabilirliğini artırmak için yarı saydam arka plan
+            padding: EdgeInsets.all(8),
+            child: Text(
+              'Flutter Rocks!',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         ],
       ),
     );

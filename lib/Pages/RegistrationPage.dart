@@ -1,6 +1,7 @@
-import 'package:animated_background/animated_background.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:wallpaper/Pages/HomePage.dart';
 import 'package:wallpaper/services/auth_service.dart';
 
@@ -45,63 +46,96 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset("assets/images/vector2.png", width: width,),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                Text("Welcome" , style: TextStyle(fontSize: width*0.09, color: Colors.black, fontWeight: FontWeight.bold),),
-                SizedBox(height: 10.0,),
-                TextFormField(
-                  decoration: InputDecoration(
-                    label: Text("Enter Email"),
-                    prefix: Padding(
-                      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                      child: Icon(Icons.mail, color: Colors.black,),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: width,
+                      height: height*0.4,
+                      child: Lottie.asset("assets/lottie/signup.json")),
+                    Text("Sign Up" , style: TextStyle(
+                      fontSize: width*0.1, 
+                      color: Colors.black, 
+                      fontWeight: FontWeight.bold, 
+                      letterSpacing: 4, 
+                    )),
+                    SizedBox(height: 10.0,),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        label: Text("Enter Email"),
+                        prefix: Padding(
+                          padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                          child: Icon(Icons.mail, color: Colors.black,),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        )
+                      ),
+                      controller: MailController,
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)
+              
+                    SizedBox(height: 10.0,),
+              
+              
+                    TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        label: Text("Enter Password"),
+                        prefix: Padding(
+                          padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                          child: Icon(Icons.key, color: Colors.black,),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        ),
+                      ),
+                      controller: PasswordController,
+                    ),
+                    Text(errorMessage, style: TextStyle(color: Colors.red), ),
+                    SizedBox(height: 10.0,),
+                    SizedBox(
+                      width: width,
+                      child: ElevatedButton(onPressed: (){
+                        register();
+                      }, child: Text("Register", style: TextStyle(fontSize: width*0.06, color: Colors.white, fontWeight: FontWeight.bold),), 
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),),
+                    ),
+                    SizedBox(height: height*0.1,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        OutlinedButton(onPressed: (){
+                        
+                        }, child: Row(children: [
+                          Image.asset("assets/images/google.png", width: width*0.075,),
+                          SizedBox(width: 10.0,),
+                          Text("Google", style: TextStyle(fontSize: width*0.05, color: Colors.black),)
+                        ],)),
+                        OutlinedButton(onPressed: (){
+                        
+                        }, child: Row(children: [
+                          Image.asset("assets/images/facebook.png", width: width*0.075,),
+                          SizedBox(width: 10.0,),
+                          Text("Facebook", style: TextStyle(fontSize: width*0.05, color: Colors.black),)
+                        ],)),
+                      ],
                     )
-                  ),
-                  controller: MailController,
-                ),
           
-                SizedBox(height: 10.0,),
-          
-          
-                TextFormField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    label: Text("Enter Password"),
-                    prefix: Padding(
-                      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                      child: Icon(Icons.key, color: Colors.black,),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                  ),
-                  controller: PasswordController,
+                  ],
                 ),
-                Text(errorMessage, style: TextStyle(color: Colors.red), ),
-                SizedBox(height: 10.0,),
-                SizedBox(
-                  width: width,
-                  child: ElevatedButton(onPressed: (){
-                    register();
-                  }, child: Text("Register", style: TextStyle(fontSize: width*0.06, color: Colors.white, fontWeight: FontWeight.bold),), 
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),),
-                ),
-                
-              ],
-            ),
+              ),
+            ],
           ),
-          Image.asset("assets/images/vector1.png", width: width,)
-        ],
+        ),
       ),
+      backgroundColor: Colors.white,
     );
   }
 }
