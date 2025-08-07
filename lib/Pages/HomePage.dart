@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallpaper/services/api_service.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -8,27 +9,79 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final _controller = TextEditingController();
+  final List<String> _messages = [];
+  bool _isLoading = false;
+
+  void _sendMessage() async {
+    final message = _controller.text.trim();
+    if (message.isEmpty) return;
+
+    setState(() {
+      _messages.add("👤 $message");
+      _isLoading = true;
+      _controller.clear();
+    });
+
+    final result = await ApiService.getAIResponse(message);
+
+    setState(() {
+      _messages.add("🤖 $result");
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.centerLeft, // Text’i ortalamak için
+      backgroundColor: Colors.white,
+      appBar: AppBar(title: Text("AI Chat"),
+      actions: [
+        IconButton(onPressed: (){
+          setState(() {
+            _messages.clear();
+          });
+        }, icon: Icon(Icons.restart_alt))
+      ],
+      backgroundColor: Colors.deepPurple,),
+      body: Column(
         children: [
-          Image.asset(
-            'assets/images/vector2.png', // Örnek resim
-            width: 400,
-            height: 300,
-            fit: BoxFit.cover,
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(12),
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 6),
+                  child: Text(_messages[index], style: TextStyle(fontSize: 15),),
+                );
+              },
+            ),
           ),
-          Container(
-            color: Colors.black54, // Yazının okunabilirliğini artırmak için yarı saydam arka plan
-            padding: EdgeInsets.all(8),
-            child: Text(
-              'Flutter Rocks!',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+          if (_isLoading) Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: CircularProgressIndicator(),
+          ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintText: "Bir mesaj yaz...",
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  IconButton(
+                    icon: Icon(Icons.send_rounded, color: Colors.black,),
+                    onPressed: _isLoading ? null : _sendMessage,
+                  ),
+                ],
               ),
             ),
           ),
@@ -37,5 +90,3 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
-
-//baba@gmail.com

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wallpaper/Pages/HomePage.dart';
 import 'package:wallpaper/Pages/LoginPage.dart';
-import 'package:wallpaper/Pages/WelcomePage.dart';
 import 'package:wallpaper/services/auth_service.dart';
 
 class RegistrationPage extends StatefulWidget {
