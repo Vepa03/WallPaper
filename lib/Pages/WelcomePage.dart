@@ -22,7 +22,7 @@ class _WelcomePageState extends State<WelcomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Wallpaper App", style: TextStyle(
+            Text("Chatbot App", style: TextStyle(
                   fontSize: width*0.1, 
                   fontWeight: FontWeight.bold,
                   color: Colors.black)),

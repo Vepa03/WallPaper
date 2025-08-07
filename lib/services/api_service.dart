@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   static const String baseUrl = 'https://openrouter.ai/api/v1/chat/completions';
-  static const String apiKey = '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'; // BURAYA API KEY'İNİ KOY
+  static const String apiKey = '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'; 
 
   static Future<String> getAIResponse(String userMessage) async {
     final headers = {

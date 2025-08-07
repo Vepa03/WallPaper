@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallpaper/Pages/AdminPage.dart';
 import 'package:wallpaper/services/api_service.dart';
 
 class Homepage extends StatefulWidget {
@@ -35,15 +36,26 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("AI Chat"),
+      appBar: AppBar(title: Text("Chatbot", style: TextStyle(color: Colors.white),),
+      centerTitle: true,
+      automaticallyImplyLeading: false,
       actions: [
-        IconButton(onPressed: (){
-          setState(() {
-            _messages.clear();
-          });
-        }, icon: Icon(Icons.restart_alt))
+        Row(
+          children: [
+            IconButton(onPressed: (){
+              setState(() {
+                _messages.clear();
+              });
+            }, icon: Icon(Icons.restart_alt, color: Colors.white,)),
+            IconButton(onPressed: (){
+              setState(() {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Adminpage()));
+              });
+            }, icon: Icon(Icons.person, color: Colors.white,)),
+          ],
+        )
       ],
-      backgroundColor: Colors.deepPurple,),
+      backgroundColor: Colors.black,),
       body: Column(
         children: [
           Expanded(

@@ -23,7 +23,7 @@ class _LoginPageState extends State<Loginpage> with TickerProviderStateMixin{
 
   void register() async {
     try {
-      await authService.value.createAccount(
+      await authService.value.signIn(
       email: MailController.text, 
       password: PasswordController.text);
 
