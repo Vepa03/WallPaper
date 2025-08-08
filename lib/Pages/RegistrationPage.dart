@@ -91,7 +91,6 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
                       fontSize: width*0.1, 
                       color: Colors.black, 
                       fontWeight: FontWeight.bold, 
-                      letterSpacing: 4, 
                     )),
                     SizedBox(height: 10.0,),
                     TextFormField(
