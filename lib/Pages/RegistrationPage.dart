@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallpaper/Pages/HomePage.dart';
 import 'package:wallpaper/Pages/LoginPage.dart';
 import 'package:wallpaper/services/auth_service.dart';
@@ -21,11 +22,18 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
 
   String errorMessage = '';
 
+
+  Future<void> saveEmail(String email) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('saved mail', email);
+  }
+  
   void register() async {
     try {
       await authService.value.createAccount(
       email: MailController.text, 
       password: PasswordController.text);
+      await saveEmail(MailController.text);
 
       nextPage();
     } on FirebaseAuthException catch (e) {
@@ -38,8 +46,13 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
   }
 
   void nextPage(){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homepage()));
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => Homepage()),
+      (Route<dynamic> route) => false,
+    );
   }
+
   
 
   @override
@@ -107,7 +120,7 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
                       child: ElevatedButton(onPressed: (){
                         register();
                       }, child: Text("Register", style: TextStyle(fontSize: width*0.06, color: Colors.white, fontWeight: FontWeight.bold),), 
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),),
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.black),),
                     ),
                     SizedBox(height: 10.0,),
                     Text.rich(TextSpan(text: "Already registered ?  ", 
@@ -122,25 +135,7 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
                         ),
                       ])),
                     SizedBox(height: height*0.05,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        OutlinedButton(onPressed: (){
-                        
-                        }, child: Row(children: [
-                          Image.asset("assets/images/google.png", width: width*0.075,),
-                          SizedBox(width: 10.0,),
-                          Text("Google", style: TextStyle(fontSize: width*0.05, color: Colors.black),)
-                        ],)),
-                        OutlinedButton(onPressed: (){
-                        
-                        }, child: Row(children: [
-                          Image.asset("assets/images/facebook.png", width: width*0.075,),
-                          SizedBox(width: 10.0,),
-                          Text("Facebook", style: TextStyle(fontSize: width*0.05, color: Colors.black),)
-                        ],)),
-                      ],
-                    )
+                    
           
                   ],
                 ),

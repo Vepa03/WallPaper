@@ -38,7 +38,11 @@ class _LoginPageState extends State<Loginpage> with TickerProviderStateMixin{
   }
 
   void nextPage(){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homepage()));
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => Homepage()),
+      (Route<dynamic> route) => false,
+    );
   }
   
 
@@ -106,7 +110,7 @@ class _LoginPageState extends State<Loginpage> with TickerProviderStateMixin{
                       child: ElevatedButton(onPressed: (){
                         register();
                       }, child: Text("Login", style: TextStyle(fontSize: width*0.06, color: Colors.white, fontWeight: FontWeight.bold),), 
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),),
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.black),),
                     ),
                     SizedBox(height: 10.0,),
                     Text.rich(TextSpan(text: "You don't have an account ?  ", 

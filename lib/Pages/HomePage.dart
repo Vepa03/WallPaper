@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallpaper/Pages/AdminPage.dart';
+import 'package:wallpaper/Pages/SettingsPage.dart';
 import 'package:wallpaper/services/api_service.dart';
 
 class Homepage extends StatefulWidget {
@@ -10,6 +10,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
   final _controller = TextEditingController();
   final List<String> _messages = [];
   bool _isLoading = false;
@@ -32,6 +33,23 @@ class _HomepageState extends State<Homepage> {
     });
   }
 
+  void reset(){
+    showDialog(context: context, builder: (context)=> AlertDialog(
+      title: Text("Do you want to reset?"),
+      content: Row(
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width*0.3,
+            child: OutlinedButton(onPressed: (){
+              setState(() {
+                _messages.clear();
+              });
+            }, child: Text("Yes", style: TextStyle(color: Colors.black, fontSize: 20),)))
+        ],
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,13 +63,13 @@ class _HomepageState extends State<Homepage> {
             IconButton(onPressed: (){
               setState(() {
                 _messages.clear();
-              });
+              });;
             }, icon: Icon(Icons.restart_alt, color: Colors.white,)),
             IconButton(onPressed: (){
               setState(() {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Adminpage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Settings()));
               });
-            }, icon: Icon(Icons.person, color: Colors.white,)),
+            }, icon: Icon(Icons.settings, color: Colors.white,)),
           ],
         )
       ],
@@ -83,7 +101,7 @@ class _HomepageState extends State<Homepage> {
                     child: TextField(
                       controller: _controller,
                       decoration: InputDecoration(
-                        hintText: "Bir mesaj yaz...",
+                        hintText: "Ask anything",
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                       ),
                     ),

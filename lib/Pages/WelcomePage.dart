@@ -22,7 +22,7 @@ class _WelcomePageState extends State<WelcomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Chatbot App", style: TextStyle(
+            Text("Chatbot AI", style: TextStyle(
                   fontSize: width*0.1, 
                   fontWeight: FontWeight.bold,
                   color: Colors.black)),
@@ -44,7 +44,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> Loginpage()));
                   }, child: Text("Login", style: TextStyle(color: Colors.white, fontSize: width*0.05),), 
                   style: FilledButton.styleFrom(
-                    backgroundColor: Colors.deepPurple
+                    backgroundColor: Colors.black
                   ),),
                 )
               ],
