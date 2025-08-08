@@ -34,7 +34,7 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
       email: MailController.text, 
       password: PasswordController.text);
       await saveEmail(MailController.text);
-
+      success();
       nextPage();
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -52,6 +52,18 @@ class _RegistrationPageState extends State<RegistrationPage> with TickerProvider
       (Route<dynamic> route) => false,
     );
   }
+
+  void success() {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        behavior: SnackBarBehavior.floating,
+        content: Text("Congratulation you succesfully registered !"),
+      ),
+    );
+  }
+
 
   
 

@@ -26,7 +26,7 @@ class _LoginPageState extends State<Loginpage> with TickerProviderStateMixin{
       await authService.value.signIn(
       email: MailController.text, 
       password: PasswordController.text);
-
+      success();
       nextPage();
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -36,6 +36,18 @@ class _LoginPageState extends State<Loginpage> with TickerProviderStateMixin{
     }
   
   }
+
+  void success() {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        behavior: SnackBarBehavior.floating,
+        content: Text("Congratulation you succesfully Logged in !"),
+      ),
+    );
+  }
+
 
   void nextPage(){
     Navigator.pushAndRemoveUntil(

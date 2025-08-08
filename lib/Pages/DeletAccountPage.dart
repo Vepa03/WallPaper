@@ -31,12 +31,25 @@ class _DeleteaccountpageState extends State<Deleteaccountpage> {
         password: PasswordController.text);
         await saveEmail(MailController.text);
       next();
+      success_delete();
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message ?? "Something went wrong";
       });
     }
   }
+
+  void success_delete() {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        behavior: SnackBarBehavior.floating,
+        content: Text("Congratulation you succesfully Deleted account !"),
+      ),
+    );
+  }
+
 
   void next(){
     Navigator.pushAndRemoveUntil(

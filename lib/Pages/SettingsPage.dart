@@ -22,6 +22,7 @@ class _SettingsState extends State<Settings> {
     try {
       await authService.value.signOut();
       nextPage();
+      succes_loggedout();
     } on FirebaseAuthException catch (e) {
       errorMessage = e.message ?? "There is an error";
     }
@@ -35,6 +36,18 @@ class _SettingsState extends State<Settings> {
       (Route<dynamic> route) => false,
     );
   }
+
+  void succes_loggedout() {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        behavior: SnackBarBehavior.floating,
+        content: Text("Congratulation you succesfully Logged Out !"),
+      ),
+    );
+  }
+
 
   void logout_allert(){
     showDialog(context: context, builder: (context)=> AlertDialog(

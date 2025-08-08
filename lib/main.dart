@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:wallpaper/Pages/InitialPage.dart';
-import 'package:wallpaper/Pages/WelcomePage.dart';
 import 'firebase_options.dart';
 
 void main() async {

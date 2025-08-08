@@ -17,7 +17,7 @@ class _AboutusState extends State<Aboutus> {
         title: Text("About App", style: TextStyle(color: Colors.white),),
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.black,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -33,7 +33,7 @@ class _AboutusState extends State<Aboutus> {
                     child: Image.asset('assets/images/Chatbot.png', fit: BoxFit.cover, width: width, height: height*0.4,),
                     ),
                 SizedBox(height: 20.0,),
-                Text("Library is a simple and user-friendly application designed to help you discover, read, and organize books easily. Whether you're a passionate reader or just starting your reading journey, Library offers a clean and efficient way to explore various authors and their works.\n\n🌟 Features:\n\nRead book details and access content directly\n\nMinimal and clean design for distraction-free reading\n\n💡 Why Library?\n\nWe believe everyone should have easy access to literature. Library was built with love to promote reading and make books more accessible — anytime, anywhere.",
+                Text("This application is designed to let you have natural, real-time conversations with an advanced AI powered by OpenAI. Simply type your message and the AI will respond instantly, providing answers, ideas, explanations, or even casual chat. Whether you’re looking for quick information, learning support, creative inspiration, or just a friendly conversation, this app is here to assist you anytime, anywhere. Built with Flutter and seamlessly integrated with the OpenAI API, it delivers a smooth, fast, and engaging user experience. Your words start the conversation — the possibilities are endless.",
                 style: TextStyle(color: Colors.black, fontSize: width*0.04),),
                 SizedBox(height: 15.0,)
               ],
